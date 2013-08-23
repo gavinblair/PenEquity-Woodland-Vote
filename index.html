@@ -31,7 +31,7 @@
         <div class='span3'>
           <label for="address">Enter your address or postal code:</label>
           <input id='address' type="text" placeholder="150 Dufferin Ave" class="span3">
-          <a onclick='gettheward' class="btn btn-large btn-block btn-primary">Check out my councillor</a>
+          <a onclick='gettheward()' class="btn btn-large btn-block btn-primary">Check out my councillor</a>
         </div>
       </div>
 </script>
@@ -47,6 +47,9 @@
       ward = data.ward;
       $("#container").html(ich.results(data));
     });
+  }
+  function gotward(data){
+    console.log(data);
   }
   document.addEventListener('DOMContentLoaded', function() {
     $("#container").html(ich.getward);
