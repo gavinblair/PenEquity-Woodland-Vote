@@ -31,7 +31,7 @@
         <div class='span3'>
           <label for="address">Enter your address or postal code:</label>
           <input id='address' type="text" placeholder="150 Dufferin Ave" class="span3">
-          <a onclick='getward' class="btn btn-large btn-block btn-primary">Check out my councillor</a>
+          <a onclick='gettheward' class="btn btn-large btn-block btn-primary">Check out my councillor</a>
         </div>
       </div>
 </script>
@@ -42,14 +42,14 @@
 
     var gData;
     var ward;
-  function getward(){
+  function gettheward(){
     $.getJSON('http://opencouncil.ca/getward.php?a='+$('#address').val()+'&callback=gotward', function(data) {
       ward = data.ward;
       $("#container").html(ich.results(data));
     });
   }
   document.addEventListener('DOMContentLoaded', function() {
-    
+    $("#container").html(ich.getward);
     var URL = "0Ai6FEf_e95YqdFVSd1JwMWREZUdvRmxSc05mXzV5Y0E";
     Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
   }) 
