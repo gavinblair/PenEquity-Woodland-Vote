@@ -15,18 +15,42 @@
   </head>
 
 <body>
-<div id='container'></div>
+<div id='container' class='container'></div>
 <script type='text/html' id='getward'>
-      
+      <div class='demo-headline'>
+        <h1><em>De</em>forest City?</h1>
+        <p>
+          A 4.2 hectare significant woodland and wetland in London may be replaced by a parking lot and retail/entertainment complex.
+        </p>
+        <p>
+          Council will be voting on the fate of the woodland this coming Tuesday, August 27th at 6:00pm.
+        </p>
+        <small>How will your councillor vote on Tuesday?</small>
+      </div>
+      <div class='row'>
+        <div class='span3'>
+          <label for="address">Enter your address or postal code:</label>
+          <input id='address' type="text" placeholder="150 Dufferin Ave" class="span3">
+          <a onclick='getward' class="btn btn-large btn-block btn-primary">Check out my councillor</a>
+        </div>
+      </div>
 </script>
 <script type='text/html' id='results'>
-      
+      ward: {{ward}}
 </script>
 <script type="text/javascript">
+
+    var gData;
+    var ward;
+  function getward(){
+    $.getJSON('http://opencouncil.ca/getward.php?a='+$('#address').val()+'&callback=gotward', function(data) {
+      ward = data.ward;
+      $("#container").html(ich.results(data));
+    });
+  }
   document.addEventListener('DOMContentLoaded', function() {
     
-    var gData
-    var URL = "0Ai6FEf_e95YqdFVSd1JwMWREZUdvRmxSc05mXzV5Y0E"
+    var URL = "0Ai6FEf_e95YqdFVSd1JwMWREZUdvRmxSc05mXzV5Y0E";
     Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
   }) 
     
